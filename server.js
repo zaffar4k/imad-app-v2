@@ -5,12 +5,55 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var articalone={
+  title:'Article One | Zaffar Khan',
+  heading:'Article One',
+  date:'Feb 19 2017',
+  content:`<p>
+            This is my first Article about Sachine Ramesh Tendulkar.
+            Sachine Tendulkar was born on 24 april 1973 in Mumbai.
+            Sachine Tendulkar is an Indian Cricketer.
+            He has been the mpst complete batsman of his time.
+            </p>`
+};
+
+function createTemplate(data){
+    var title = data.title;
+    var date = data.date;
+    var heading = data.heading;
+    var content = data.content;
+
+var htmlTemplate =`
+<html>
+<head>
+    <title>${title}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/ui/style.css" rel="stylesheet" />
+</head>    
+    <body>
+        <div class="bluemoon">
+        <div>
+            <a href="/">Home</a>
+        </div>
+        <hr/>
+        <h3>${heading}</h3>
+        <div>${date}</div>
+        <div>
+           ${content}
+        </div>
+        </div>
+    </body>
+    </html>
+  `;
+  return htmlTemplate;
+}
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one',function(req,res) {
-    res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+    res.send(createTemplate(articleOne));
 });
 
 app.get('/article-two',function(req,res) {
