@@ -6,7 +6,7 @@ var app = express();
 app.use(morgan('combined'));
 
 var articles = {
-  articleOne:{
+  'article-one':{
   title:'Article One | Zaffar Khan',
   heading:'Article One',
   date:'Feb 19 2017',
@@ -17,7 +17,7 @@ var articles = {
             He has been the mpst complete batsman of his time.
             </p>`
 },
-  articleTwo:{
+  'article-two':{
       title:'Article Two | Zaffar Khan',
   heading:'Article Two',
   date:'Feb 20 2017',
@@ -26,7 +26,7 @@ var articles = {
             Sachine Tendulkar was born on 24 april 1973 in Mumbai.
             </p>`
   },
-  articleThree:{
+  'article-three':{
       title:'Article Three | Zaffar Khan',
   heading:'Article Three',
   date:'Feb 21 2017',
