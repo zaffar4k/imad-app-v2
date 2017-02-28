@@ -5,7 +5,8 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne={
+var articles = {
+  articleOne:{
   title:'Article One | Zaffar Khan',
   heading:'Article One',
   date:'Feb 19 2017',
@@ -15,8 +16,27 @@ var articleOne={
             Sachine Tendulkar is an Indian Cricketer.
             He has been the mpst complete batsman of his time.
             </p>`
+},
+  articleTwo:{
+      title:'Article Two | Zaffar Khan',
+  heading:'Article Two',
+  date:'Feb 20 2017',
+  content:`<p>
+            This is my second Article about Sachine Ramesh Tendulkar.
+            Sachine Tendulkar was born on 24 april 1973 in Mumbai.
+            </p>`
+  },
+  articleThree:{
+      title:'Article Three | Zaffar Khan',
+  heading:'Article Three',
+  date:'Feb 21 2017',
+  content:`<p>
+            This is my third Article about Sachine Ramesh Tendulkar.
+            Sachine Tendulkar was born on 24 april 1973 in Mumbai.
+            Sachine Tendulkar is an Indian Cricketer.
+            </p>`
+  },
 };
-
 function createTemplate (data) {
     var title = data.title;
     var date = data.date;
@@ -52,8 +72,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function(req,res) {
-    res.send(createTemplate(articleOne));
+app.get('/:articleName', function (req,res) {
+    //articleName == article-one
+    //articles[articleName] == {} content object for article one
+    var articleName = req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/article-two',function(req,res) {
